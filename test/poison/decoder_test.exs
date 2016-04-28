@@ -77,6 +77,11 @@ defmodule Poison.DecoderTest do
     assert decode(person, as: %Person{contact: %Contact{}}) == %Person{name: "Devin Torres", contact: %Contact{email: "devin@torres.com"}}
   end
 
+  test "decoding into nested struct with nil value" do
+    person = %{"name" => "Devin Torres", "contact" => nil}
+    assert decode(person, as: %Person{contact: %Contact{}}) == %Person{name: "Devin Torres", contact: nil}
+  end
+
   test "decoding into nested structs with nil overriding defaults" do
     person = %{"name" => "Devin Torres", "contact" => nil}
     assert decode(person, as: %Person{contact: %Contact{}}) == %Person{name: "Devin Torres", contact: nil}

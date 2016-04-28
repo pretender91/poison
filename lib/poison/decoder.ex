@@ -39,6 +39,7 @@ defmodule Poison.Decode do
     end)
   end
 
+  defp transform_struct(nil, _keys, _as, _options), do: nil
   defp transform_struct(value, keys, as, options) when keys in [:atoms, :atoms!] do
     do_transform_struct(value, keys, as, options)
   end
